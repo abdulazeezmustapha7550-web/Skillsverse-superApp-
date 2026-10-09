@@ -31,7 +31,7 @@ const CATEGORIES = ['Clothing', 'Accessories', 'Gadgets', 'Services', 'Other'];
 const FEED_PAGE_SIZE = 6;
 
 const ROOT = __dirname;
-const PUBLIC_DIR = path.join(ROOT, 'public');
+const PUBLIC_DIR = ROOT;
 const DATA_DIR = path.join(ROOT, 'data');
 const UPLOAD_DIR = path.join(ROOT, 'uploads'); // public images
 const PRIVATE_DIR = path.join(ROOT, 'private'); // premium PDFs: never served statically

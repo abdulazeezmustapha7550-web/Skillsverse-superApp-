@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Skillverse</title>
+  <meta name="description" content="Learn digital skills, buy and sell locally, and read premium e-books and courses, all in one app.">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Skillverse">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="top-row">
+        <div class="brand"><i></i>skillverse</div>
+        <button class="btn ghost sm" id="adminBtn" data-act="admin-toggle" hidden><span data-icon="shield" data-cls="sm"></span>Admin Dashboard</button>
+      </div>
+      <div class="pills" id="pills" role="tablist" aria-label="Categories"></div>
+    </header>
+
+    <main>
+      <section class="view active" id="view-feed" aria-label="Feed"><div class="feed" id="feed"></div></section>
+      <section class="view" id="view-library" aria-label="Digital Library"><div class="pad" id="libraryBody"></div></section>
+      <section class="view" id="view-market" aria-label="Marketplace"><div class="pad" id="marketBody"></div></section>
+      <section class="view" id="view-founder" aria-label="Founder and About"><div class="pad" id="founderBody"></div></section>
+      <section class="view" id="view-profile" aria-label="Profile"><div class="pad" id="profileBody"></div></section>
+    </main>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <button data-act="nav" data-view="feed"><span class="ic-wrap" data-icon="feed"></span>Feed</button>
+      <button data-act="nav" data-view="library"><span class="ic-wrap" data-icon="library"></span>Library</button>
+      <button data-act="nav" data-view="market"><span class="ic-wrap" data-icon="market"></span>Market</button>
+      <button data-act="nav" data-view="founder"><span class="ic-wrap" data-icon="founder"></span>Founder</button>
+      <button data-act="nav" data-view="profile"><span class="ic-wrap" data-icon="me"></span>Profile</button>
+    </nav>
+  </div>
+
+  <div class="sheet-wrap" id="sheet">
+    <div class="backdrop" data-act="sheet-close"></div>
+    <div class="sheet" id="sheetBody" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <div class="overlay wide" id="admin" role="dialog" aria-modal="true" aria-label="Admin Dashboard">
+    <div class="bar">
+      <div class="ttl">Admin Dashboard</div>
+      <button class="btn ghost sm sq" data-act="admin-toggle" aria-label="Close dashboard"><span data-icon="close"></span></button>
+    </div>
+    <div class="tabs" id="adminTabs"></div>
+    <div class="adm-body" id="adminBody"></div>
+  </div>
+
+  <div class="overlay reader" id="reader" role="dialog" aria-modal="true" aria-label="PDF reader">
+    <div class="bar">
+      <button class="btn ghost sm sq" data-act="reader-close" aria-label="Close reader"><span data-icon="close"></span></button>
+      <div class="ttl" id="rTitle"></div>
+      <div class="pg"><input type="number" id="rPage" min="1" value="1" aria-label="Page number"> / <span id="rCount">1</span></div>
+    </div>
+    <div class="stage" id="rStage"><div class="msg" id="rMsg">Opening…</div><canvas id="rCanvas" hidden></canvas></div>
+    <div class="bar foot">
+      <button class="btn ghost sm sq" data-act="r-prev" aria-label="Previous page"><span data-icon="left"></span></button>
+      <button class="btn ghost sm sq" data-act="r-zoom-out" aria-label="Zoom out"><span data-icon="minus"></span></button>
+      <button class="btn ghost sm sq" data-act="r-zoom-in" aria-label="Zoom in"><span data-icon="plus"></span></button>
+      <button class="btn ghost sm sq" data-act="r-next" aria-label="Next page"><span data-icon="right"></span></button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="localPdf" accept="application/pdf,.pdf" hidden>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="https://js.paystack.co/v1/inline.js" defer></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
